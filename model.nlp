@@ -1,0 +1,703 @@
+{
+  "settings": {
+    "languages": [
+      "id",
+      "en"
+    ],
+    "forceNER": true,
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "id",
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "id": {
+        "settings": {
+          "locale": "id",
+          "trainByDomain": false,
+          "tag": "domain-manager-id",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "apa,buka,jam,nya,saja": {
+            "intent": "operational.hour",
+            "domain": "default"
+          },
+          "apa,buka,jam,nya,operasional,saja": {
+            "intent": "operational.hour",
+            "domain": "default"
+          },
+          "apa,buka,jam,nanti": {
+            "intent": "operational.open",
+            "domain": "default"
+          },
+          "atau,buka,hari,ini,libur": {
+            "intent": "operational.open",
+            "domain": "default"
+          },
+          "apa,espresso,itu": {
+            "intent": "espresso.base",
+            "domain": "default"
+          },
+          "apa,espresso,menu,saja": {
+            "intent": "espresso.base",
+            "domain": "default"
+          },
+          "apa,espresso,rasio,saja": {
+            "intent": "espresso.ratio",
+            "domain": "default"
+          },
+          "custom,espresso,rasio": {
+            "intent": "espresso.ratio",
+            "domain": "default"
+          },
+          "espresso": {
+            "intent": "espresso.base",
+            "domain": "default"
+          },
+          "espresso,rasio": {
+            "intent": "espresso.ratio",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "operational.hour": "default",
+          "operational.open": "default",
+          "espresso.base": "default",
+          "espresso.ratio": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "Jam Operasional Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "nanti buka jam berapa",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "hari ini libur atau buka",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "apa itu espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "menu espresso apa saja",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso berapa saja",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "custom rasio espresso",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "Jam Operasional Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "nanti buka jam berapa",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "hari ini libur atau buka",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "apa itu espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "menu espresso apa saja",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso berapa saja",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "custom rasio espresso",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "Jam Operasional Buka nya jam berapa saja",
+            "intent": "operational.hour"
+          },
+          {
+            "domain": "default",
+            "utterance": "nanti buka jam berapa",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "hari ini libur atau buka",
+            "intent": "operational.open"
+          },
+          {
+            "domain": "default",
+            "utterance": "apa itu espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "menu espresso apa saja",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso berapa saja",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "custom rasio espresso",
+            "intent": "espresso.ratio"
+          },
+          {
+            "domain": "default",
+            "utterance": "espresso",
+            "intent": "espresso.base"
+          },
+          {
+            "domain": "default",
+            "utterance": "rasio espresso",
+            "intent": "espresso.ratio"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "id",
+              "tag": "nlu-id",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "buka": 1,
+              "nya": 1,
+              "jam": 1,
+              "apa": 1,
+              "saja": 1,
+              "operasional": 1,
+              "nanti": 1,
+              "hari": 1,
+              "ini": 1,
+              "libur": 1,
+              "atau": 1,
+              "itu": 1,
+              "espresso": 1,
+              "menu": 1,
+              "rasio": 1,
+              "custom": 1
+            },
+            "intents": {
+              "operational.hour": 1,
+              "operational.open": 1,
+              "espresso.base": 1,
+              "espresso.ratio": 1
+            },
+            "intentFeatures": {
+              "operational.hour": {
+                "buka": 1,
+                "nya": 1,
+                "jam": 1,
+                "apa": 1,
+                "saja": 1,
+                "operasional": 1
+              },
+              "operational.open": {
+                "nanti": 1,
+                "buka": 1,
+                "jam": 1,
+                "apa": 1,
+                "hari": 1,
+                "ini": 1,
+                "libur": 1,
+                "atau": 1
+              },
+              "espresso.base": {
+                "apa": 1,
+                "itu": 1,
+                "espresso": 1,
+                "menu": 1,
+                "saja": 1
+              },
+              "espresso.ratio": {
+                "rasio": 1,
+                "espresso": 1,
+                "apa": 1,
+                "saja": 1,
+                "custom": 1
+              }
+            },
+            "featuresToIntent": {
+              "buka": [
+                "operational.hour",
+                "operational.open"
+              ],
+              "nya": [
+                "operational.hour"
+              ],
+              "jam": [
+                "operational.hour",
+                "operational.open"
+              ],
+              "apa": [
+                "operational.hour",
+                "operational.open",
+                "espresso.base",
+                "espresso.ratio"
+              ],
+              "saja": [
+                "operational.hour",
+                "espresso.base",
+                "espresso.ratio"
+              ],
+              "operasional": [
+                "operational.hour"
+              ],
+              "nanti": [
+                "operational.open"
+              ],
+              "hari": [
+                "operational.open"
+              ],
+              "ini": [
+                "operational.open"
+              ],
+              "libur": [
+                "operational.open"
+              ],
+              "atau": [
+                "operational.open"
+              ],
+              "itu": [
+                "espresso.base"
+              ],
+              "espresso": [
+                "espresso.base",
+                "espresso.ratio"
+              ],
+              "menu": [
+                "espresso.base"
+              ],
+              "rasio": [
+                "espresso.ratio"
+              ],
+              "custom": [
+                "espresso.ratio"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "id",
+                "tag": "nlu-id",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "buka",
+                "nya",
+                "jam",
+                "apa",
+                "saja",
+                "operasional",
+                "nanti",
+                "hari",
+                "ini",
+                "libur",
+                "atau",
+                "itu",
+                "espresso",
+                "menu",
+                "rasio",
+                "custom"
+              ],
+              "intents": [
+                "operational.hour",
+                "operational.open",
+                "espresso.base",
+                "espresso.ratio"
+              ],
+              "perceptrons": [
+                [
+                  1.8934379816055298,
+                  6.291617393493652,
+                  2.4137470722198486,
+                  -0.11021577566862106,
+                  4.063373565673828,
+                  0.07568119466304779,
+                  -3.8771297931671143,
+                  -0.46340489387512207,
+                  -0.46340489387512207,
+                  -0.46340489387512207,
+                  -0.46340489387512207,
+                  -0.22617988288402557,
+                  -2.523367166519165,
+                  -1.114705204963684,
+                  -1.1127265691757202,
+                  0,
+                  -0.3154199102941898
+                ],
+                [
+                  4.151020526885986,
+                  -4.0077362060546875,
+                  1.9480044841766357,
+                  0.9083162546157837,
+                  -4.322235107421875,
+                  -1.1056972742080688,
+                  5.9557390213012695,
+                  2.2030158042907715,
+                  2.2030158042907715,
+                  2.2030158042907715,
+                  2.2030158042907715,
+                  -0.7251898646354675,
+                  -1.5057573318481445,
+                  -0.13903626799583435,
+                  -0.32307493686676025,
+                  -0.10299641638994217,
+                  1.3226314508010661
+                ],
+                [
+                  -2.116670608520508,
+                  -0.9818154573440552,
+                  -1.6547964811325073,
+                  -1.2081568241119385,
+                  -2.207301616668701,
+                  -0.29405030608177185,
+                  -0.6259205341339111,
+                  -0.45200133323669434,
+                  -0.45200133323669434,
+                  -0.45200133323669434,
+                  -0.45200133323669434,
+                  1.6396209001541138,
+                  9.98522663116455,
+                  3.8200316429138184,
+                  -13.746118545532227,
+                  -1.355523943901062,
+                  3.9334763167282896
+                ],
+                [
+                  -0.7298202514648438,
+                  -0.391631156206131,
+                  -0.5444666147232056,
+                  -0.8641306757926941,
+                  1.1713792085647583,
+                  -0.1515638679265976,
+                  -0.1077883169054985,
+                  -0.15960857272148132,
+                  -0.15960857272148132,
+                  -0.15960857272148132,
+                  -0.15960857272148132,
+                  -1.8698481321334839,
+                  0.3693596422672272,
+                  -2.607659101486206,
+                  13.840002059936523,
+                  0.3639432191848755,
+                  -0.1859395564952256
+                ]
+              ]
+            }
+          }
+        }
+      },
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {},
+        "intentDict": {},
+        "sentences": [],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {},
+            "intents": {},
+            "intentFeatures": {},
+            "featuresToIntent": {},
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "id",
+        "Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "Jam Operasional Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "nanti buka jam berapa"
+      ],
+      [
+        "id",
+        "hari ini libur atau buka"
+      ],
+      [
+        "id",
+        "apa itu espresso"
+      ],
+      [
+        "id",
+        "menu espresso apa saja"
+      ],
+      [
+        "id",
+        "rasio espresso berapa saja"
+      ],
+      [
+        "id",
+        "custom rasio espresso"
+      ],
+      [
+        "id",
+        "espresso"
+      ],
+      [
+        "id",
+        "rasio espresso"
+      ],
+      [
+        "id",
+        "Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "Jam Operasional Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "nanti buka jam berapa"
+      ],
+      [
+        "id",
+        "hari ini libur atau buka"
+      ],
+      [
+        "id",
+        "apa itu espresso"
+      ],
+      [
+        "id",
+        "menu espresso apa saja"
+      ],
+      [
+        "id",
+        "rasio espresso berapa saja"
+      ],
+      [
+        "id",
+        "custom rasio espresso"
+      ],
+      [
+        "id",
+        "espresso"
+      ],
+      [
+        "id",
+        "rasio espresso"
+      ],
+      [
+        "id",
+        "Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "Jam Operasional Buka nya jam berapa saja"
+      ],
+      [
+        "id",
+        "nanti buka jam berapa"
+      ],
+      [
+        "id",
+        "hari ini libur atau buka"
+      ],
+      [
+        "id",
+        "apa itu espresso"
+      ],
+      [
+        "id",
+        "menu espresso apa saja"
+      ],
+      [
+        "id",
+        "rasio espresso berapa saja"
+      ],
+      [
+        "id",
+        "custom rasio espresso"
+      ],
+      [
+        "id",
+        "espresso"
+      ],
+      [
+        "id",
+        "rasio espresso"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "id": {
+        "operational.hour": [
+          {
+            "answer": "Jam Operasional Toko Kami Adalah dari Jam 10:00 Pagi Sampai Jam 10:00 Malam"
+          }
+        ],
+        "operational.open": [
+          {
+            "answer": "Hari ini kami sudah buka dari jam 10:00 pagi"
+          }
+        ],
+        "espresso.ratio": [
+          {
+            "answer": "Kami Menyediakan Beberapa pilihan rasio untuk anda. 1:1 1:1,5 1:2"
+          }
+        ],
+        "espresso.base": [
+          {
+            "answer": "Espresso merupakan proses penyeduhan kopi dengan mengunakan tekanan tinggi.\r\nKami menyediakan menu dengan menggunakan espresso base yaitu Cappucino, Coffe Late, Es Kopi Susu Gula Aren"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
