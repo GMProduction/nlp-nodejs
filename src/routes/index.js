@@ -6,13 +6,16 @@ import {
     register
 } from "../controller/auth";
 
-route.get('/', async (request, response) => {
-    response.render('index');
+route.get('/', loginPage);
+route.post('/', loginPage);
+route.get('/dashboard', (req, res) => {
+    res.render('index');
 });
 route.get('/cart', async (request, response) => {
     response.render('cart');
 });
 require('./web/auth')(route)
+require('./web/category')(route)
 // require('./nlp-answer')(route)
 // require('./nlp-question')(route)
 // require('./nlp')(route)

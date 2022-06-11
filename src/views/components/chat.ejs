@@ -1,0 +1,41 @@
+<div>
+    <input type="text" name="question" id="question">
+    <button type="button" id="btn-submit">Tanya</button>
+</div>
+<div id="panel-answer" class="panel-answer"></div>
+
+<script>
+    async function chat() {
+        try {
+            let quest = $('#question').val();
+            appendChat('me', quest);
+            $('#question').val('');
+            let response = await $.post('/nlp/execute', {
+                quest
+            });
+            let answer = response['data']['answer'];
+            if (answer !== undefined) {
+                appendChat('bot', answer)
+            } else {
+                appendChat('bot', 'Saya Belum Tahu Pertanyaan mu')
+            }
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function appendChat(person, value) {
+        let el = $('#panel-answer');
+        if(person === 'me') {
+            el.append('<p style="text-align: right;">'+value+'</p>')
+        }else {
+            el.append('<p style="text-align: left;">'+value+'</p>')
+        }
+    }
+    $(document).ready(function(){
+        $('#btn-submit').on('click', function(){
+            chat();
+        });
+    });
+</script>

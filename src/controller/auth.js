@@ -15,7 +15,7 @@ export const loginPage = async (request, response) => {
         console.log(request.body);
         const user = await User.findOne({
             where: {
-                username: username
+                username: username,
             }
         });
 
@@ -40,7 +40,7 @@ export const loginPage = async (request, response) => {
         };
         console.log(session);
         console.log(response.locals);
-        response.redirect('/');
+        response.redirect('/dashboard');
         return
     }
     response.render('login');

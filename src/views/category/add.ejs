@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skripsi NLP | Kategori</title>
+    <%- include('../components/head.ejs') %>
+</head>
+<body>
+    <%- include('../components/navbar.ejs') %>
+    
+    <% if(messages.error) { %>
+        <script>
+            var msg = '<%= messages.error %>';
+            Swal.fire("Gagal", msg, "error")
+        </script>
+    <% } %>
+    <% if(messages.success) { %>
+        <script>
+            Swal.fire("Berhasil!", 'Success Menambahkan Data', "success")
+        </script>
+    <% } %>
+    <div class="container-fluid pt-3">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Tambah Kategori</p>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item"><a href="/category">Kategori</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" id=form-login>
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama Kategori</label>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Kategori">
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-primary" id="btn-login" type="submit">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../components/script.ejs') %>
+</body>
+</html>
