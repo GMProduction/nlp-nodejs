@@ -16,6 +16,12 @@ route.get('/cart', async (request, response) => {
 });
 require('./web/auth')(route)
 require('./web/category')(route)
+require('./web/item')(route)
+require('./api/auth')(route)
+require('./api/category')(route)
+require('./api/item')(route)
+require('./api/cart')(route)
+require('./api/transaction')(route)
 // require('./nlp-answer')(route)
 // require('./nlp-question')(route)
 // require('./nlp')(route)

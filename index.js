@@ -5,6 +5,7 @@ const route = require('./src/routes');
 const bodyParser = require('body-parser')
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const fileUpload = require('express-fileupload');
 var flash = require('express-flash');
 const PORT = 8000;
 const oneDay = 1000 * 60 * 60 * 24;
@@ -16,6 +17,9 @@ app.use(sessions({
     },
     resave: false
 }));
+app.use(fileUpload({
+    createParentPath: true
+}))
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
     extended: true

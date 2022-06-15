@@ -8,7 +8,6 @@ export const SuccessResponse = (res, meta = {}) => {
 export const ItemNotFoundResponse = (res, meta = {}) => {
     return res.status(202).json({
         code: 202,
-        success: 'item not found!',
         ...meta
     })
 }
