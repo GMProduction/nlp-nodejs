@@ -3,3 +3,34 @@
     min-height: 400px;
     background-color: darkgray;
 }
+
+.pill-menunggu {
+    background-color: darkorange;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+}
+.pill-proses {
+    background-color: #0D6EFD;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+.pill-selesai {
+    background-color: #189754;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
