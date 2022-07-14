@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skripsi NLP | Admin</title>
     <%- include('../components/head.ejs') %>
-</head>
-<body>
-    <%- include('../components/navbar.ejs') %>
-    
-    <% if(messages.error) { %>
-        <script>
-            var msg = '<%= messages.error %>';
-            Swal.fire("Gagal", msg, "error")
-        </script>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <%- include('../components/sidebar.ejs') %> <% if(messages.error) { %>
+    <script>
+      var msg = "<%= messages.error %>";
+      Swal.fire("Gagal", msg, "error");
+    </script>
+    <% } %> <% if(messages.success) { %>
+    <script>
+      Swal.fire("Berhasil!", "Success Menambahkan Data", "success");
+    </script>
     <% } %>
-    <% if(messages.success) { %>
-        <script>
-            Swal.fire("Berhasil!", 'Success Menambahkan Data', "success")
-        </script>
-    <% } %>
-    <div class="container-fluid pt-3">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Edit Admin</p>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                </ol>
-            </nav>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <div class="card">
-                    <div class="card-body">
-                        <form method="post" id=form-admin>
-                            <input type="hidden" value="<%=data.id%>" name="id">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="<%= data.username %>">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                            </div>
-                            <div class="text-end">
-                                <button class="btn btn-primary" id="btn-login" type="submit">Simpan</button>
-                            </div>
-                        </form>
-                    </div>
+    <div class="content-wrapper p-3">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <p class="font-weight-bold mb-0" style="font-size: 20px">
+          Halaman Edit Admin
+        </p>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-body">
+              <form method="post" id="form-admin">
+                <input type="hidden" value="<%=data.id%>" name="id" />
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    value="<%= data.username %>"
+                  />
                 </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="text-end">
+                  <button class="btn btn-primary" id="btn-login" type="submit">
+                    Simpan
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    
+
     <%- include('../components/script.ejs') %>
-</body>
+  </body>
 </html>

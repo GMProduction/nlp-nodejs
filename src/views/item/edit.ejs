@@ -7,9 +7,8 @@
     <title>Skripsi NLP | Kategori</title>
     <%- include('../components/head.ejs') %>
 </head>
-<body>
-    <%- include('../components/navbar.ejs') %>
-    
+<body class="hold-transition sidebar-mini layout-fixed">
+    <%- include('../components/sidebar.ejs') %>
     <% if(messages.error) { %>
         <script>
             var msg = '<%= messages.error %>';
@@ -21,7 +20,7 @@
             Swal.fire("Berhasil!", 'Success Menambahkan Data', "success")
         </script>
     <% } %>
-    <div class="container-fluid pt-3">
+    <div class="content-wrapper p-3">
         <div class="d-flex align-items-center justify-content-between mb-3">
             <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Edit Item</p>
             <nav aria-label="breadcrumb">
@@ -40,7 +39,7 @@
                             <input type="hidden" value="<%=data.id%>" name="id">
                             <div class="mb-3">
                                 <label for="kategori" class="form-label">Nama Kategori</label>
-                                <select class="form-select" aria-label="Default select example" id="kategori" name="kategori">
+                                <select class="form-control" aria-label="Default select example" id="kategori" name="kategori">
                                     <option selected value="">--pilih kategori--</option>
                                     <% category.forEach(function(v, k) { %>
                                         <option value="<%=v['id']%>" <%= v['id'] == data['category_id'] ? 'selected' : '' %> ><%=v['nama']%></option>
@@ -52,7 +51,7 @@
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Item" value="<%= data['nama'] %>">
                             </div>
                             <div class="mb-3">
-                                <label for="harga" class="form-label">Nama Item</label>
+                                <label for="harga" class="form-label">Harga (Rp.)</label>
                                 <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga" value="<%= data['harga'] %>">
                             </div>
                             <div class="mb-3">
@@ -63,8 +62,9 @@
                                 <label for="gambar" class="form-label">Gambar Item</label>
                                 <input class="form-control" type="file" id="gambar" name="gambar">
                             </div>
-                            <div class="text-end">
-                                <button class="btn btn-primary" id="btn-login" type="submit">Simpan</button>
+                            <div class="text-right">
+                                <button class="btn btn-primary" id="btn-login" type="submit">
+                                    <i class="fa fa-save mr-2"></i>Simpan</button>
                             </div>
                         </form>
                     </div>

@@ -3,6 +3,67 @@ const {
     NLPAnswer
 } = Model;
 
+export const index = async (request, response) => {
+
+    const data = await NLPAnswer.findAll();
+    response.render('nlp-answer/index', {
+        data: data
+    });
+}
+
+export const create = async (request, response) => {
+    if (request.method === 'POST') {
+        try {
+            const {
+                tipe,
+                answer
+            } = request.body;
+            await NLPAnswer.create({
+                type: tipe,
+                answer: answer,
+            });
+            request.flash('success', 'Success');
+            response.redirect('/nlp-answer/create');
+            return
+        } catch (error) {
+            request.flash('error', 'Terjadi Kesalahan');
+            response.redirect('/nlp-answer/create');
+            return
+        }
+    }
+    response.render('nlp-answer/add');
+}
+
+export const detail = async (request, response) => {
+    let id = request.params.id;
+    const data = await NLPAnswer.findOne({
+        where: {
+            id,
+        },
+    });
+    if (!data) {
+        response.send("Halaman Tidak Di Temukan")
+        return
+    }
+
+    if (request.method === 'POST') {
+        const {
+            tipe,
+            answer
+        } = request.body;
+        await data.update({
+            type: tipe,
+            answer: answer,
+        });
+        request.flash('success', 'Success');
+        response.redirect('/nlp-answer');
+        return
+    }
+    response.render('nlp-answer/edit', {
+        data: data
+    });
+}
+
 export const findAll = async (request, response) => {
     try {
         const data = await NLPAnswer.findAll();

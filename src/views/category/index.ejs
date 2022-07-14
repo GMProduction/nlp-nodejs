@@ -1,79 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skripsi NLP | Halaman Kategori</title>
     <%- include('../components/head.ejs') %>
-</head>
-<body>
-    <%- include('../components/navbar.ejs') %>
-    <% if(messages.success) { %>
-        <script>
-            Swal.fire("Berhasil!", 'Success Merubah Data', "success")
-        </script>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <%- include('../components/sidebar.ejs') %> <% if(messages.success) { %>
+    <script>
+      Swal.fire("Berhasil!", "Success Merubah Data", "success");
+    </script>
     <% } %>
-    <div class="container-fluid pt-3">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Kategori</p>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Kategori</li>
-                </ol>
-            </nav>
+    <div class="content-wrapper p-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <p class="font-weight-bold mb-0" style="font-size: 20px">
+          Halaman Kategori
+        </p>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="p-3">
+        <div class="text-right mb-2">
+          <a href="/category/create" class="btn btn-primary"
+            ><i class="fa fa-plus mr-2"></i>Tambah</a
+          >
         </div>
-        
-        <div class="p-3">
-            <div class="text-end mb-2">
-                <a href="/category/create" class="btn btn-primary">Tambah</a>
-            </div>
-            <table id="table-data" class="display w-100 table table-bordered">
-                <thead>
-                <tr>
-                    <th width="5%" class="text-center">#</th>
-                    <th>Nama</th>
-                    <th width="10%" class="text-center">Action</th>
-                </tr>
-                </thead>
-                <% data.forEach(function(v, k) { %>
-                        <tr>
-                            <td><%= k + 1 %></td>
-                            <td><%= v['nama'] %></td>
-                            <td class="text-center">
-                                <a href="/category/<%=v['id']%>/detail" class="btn btn-warning">
-                                    <i class='bx bx-edit-alt'></i>
-                                </a>
-                                <a href="#!" class="btn btn-danger btn-delete" data-id="<%=v['id']%>">
-                                    <i class='bx bx-trash'></i>
-                                </a>
-                            </td>
-                        </tr>
-                <% } ) %>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
+        <table id="table-data" class="display w-100 table table-bordered">
+          <thead>
+            <tr>
+              <th width="5%" class="text-center">#</th>
+              <th>Nama</th>
+              <th width="15%" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach(function(v, k) { %>
+            <tr>
+              <td><%= k + 1 %></td>
+              <td><%= v['nama'] %></td>
+              <td class="text-center">
+                <a href="/category/<%=v['id']%>/detail" class="btn btn-warning">
+                  <i class="bx bx-edit-alt"></i>
+                </a>
+                <a
+                  href="#!"
+                  class="btn btn-danger btn-delete"
+                  data-id="<%=v['id']%>"
+                >
+                  <i class="bx bx-trash"></i>
+                </a>
+              </td>
+            </tr>
+            <% } ) %>
+          </tbody>
+        </table>
+      </div>
     </div>
     <%- include('../components/script.ejs') %>
     <script>
-        async function destroy(id) {
-            AjaxPost('/category/'+id+'/delete',{}, function () {
-                window.location.reload()
-            });
-        }
+      async function destroy(id) {
+        AjaxPost("/category/" + id + "/delete", {}, function () {
+          window.location.reload();
+        });
+      }
 
-        $(document).ready(function() {
-            $('#table-data').DataTable();
-            $('.btn-delete').on('click', function (e) {
-                e.preventDefault();
-                let id = this.dataset.id;
-                AlertConfirm('Apakah anda yakin menghapus?', 'Data yang dihapus tidak dapat dikembalikan!', function () {
-                    destroy(id);
-                })
-            })
-        })
+      $(document).ready(function () {
+        $("#table-data").DataTable();
+        $(".btn-delete").on("click", function (e) {
+          e.preventDefault();
+          let id = this.dataset.id;
+          AlertConfirm(
+            "Apakah anda yakin menghapus?",
+            "Data yang dihapus tidak dapat dikembalikan!",
+            function () {
+              destroy(id);
+            }
+          );
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

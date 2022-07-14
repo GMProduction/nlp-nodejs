@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sanggoro Coffe | Admin</title>
     <%- include('components/head.ejs') %>
-</head>
-<body>
+  </head>
+  <body>
     <% if(messages.error) { %>
-        <script>
-            var msg = '<%= messages.error %>';
-            Swal.fire("Gagal", msg, "error")
-        </script>
-    <% } else { %>
-        
-    <% } %> 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-5">
-                <form method="post" id=form-login>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="text-end">
-                        <button class="btn btn-primary" id="btn-login" type="submit">Login</button>
-                    </div>
-                </form>
+    <script>
+      var msg = "<%= messages.error %>";
+      Swal.fire("Gagal", msg, "error");
+    </script>
+    <% } else { %> <% } %>
+    <div class="w-100 pt-5 login-body">
+      <div class="row justify-content-center w-100 mt-5">
+        <div class="col-lg-3 col-md-5 col-sm-11">
+          <div class="card">
+            <div class="card-body">
+              <div class="text-center">
+                <img
+                  src="/assets/icon/coffee-logo.png"
+                  class="text-center mb-2"
+                  height="100"
+                />
+                <p class="fw-bold">Form Login Admin</p>
+              </div>
+
+              <form method="post" id="form-login">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="text-end">
+                  <button class="btn btn-primary" id="btn-login" type="submit">
+                    Login
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    
+
     <%- include('components/script.ejs') %>
     <script>
-        $(document).ready(function(){
-        });
+      $(document).ready(function () {});
     </script>
-</body>
-
+  </body>
 </html>
