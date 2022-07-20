@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Skripsi NLP | Halaman Jawaban NLP</title>
+    <title>Skripsi NLP | Halaman Pertanyaan NLP</title>
     <%- include('../components/head.ejs') %>
   </head>
   <body class="hold-transition sidebar-mini layout-fixed">
@@ -16,13 +16,13 @@
     <div class="content-wrapper p-3">
       <div class="d-flex align-items-center justify-content-between">
         <p class="font-weight-bold mb-0" style="font-size: 20px">
-          Halaman Jawaban NLP (Natural Languange Processing)
+          Halaman Pertanyaan NLP (Natural Languange Processing)
         </p>
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-              Halaman Jawaban NLP
+              Halaman Pertanyaan NLP
             </li>
           </ol>
         </nav>
@@ -30,7 +30,7 @@
 
       <div class="p-3">
         <div class="text-right mb-2">
-          <a href="/nlp-answer/create" class="btn btn-primary"
+          <a href="/nlp-question/create" class="btn btn-primary"
             ><i class="fa fa-plus mr-2"></i>Tambah</a
           >
         </div>
@@ -38,8 +38,8 @@
           <thead>
             <tr>
               <th width="5%" class="text-center">#</th>
-              <th width="15%">Tipe</th>
-              <th>Nama</th>
+              <th>Pertanyaan</th>
+              <th>Jawaban</th>
               <th width="15%" class="text-center">Action</th>
             </tr>
           </thead>
@@ -47,11 +47,11 @@
             <% data.forEach(function(v, k) { %>
             <tr>
               <td><%= k + 1 %></td>
-              <td><%= v['type'] %></td>
-              <td><%= v['answer'] %></td>
+              <td><%= v['question'] %></td>
+              <td><%= v['answer']['answer'] %></td>
               <td class="text-center">
                 <a
-                  href="/nlp-answer/<%=v['id']%>/detail"
+                  href="/nlp-question/<%=v['id']%>/detail"
                   class="btn btn-warning"
                 >
                   <i class="bx bx-edit-alt"></i>
@@ -71,15 +71,20 @@
       </div>
     </div>
     <%- include('../components/script.ejs') %>
+    <script
+      href="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"
+    ></script>
     <script>
       async function destroy(id) {
-        AjaxPost("/nlp-answer/" + id + "/delete", {}, function () {
+        AjaxPost("/nlp-question/" + id + "/delete", {}, function () {
           window.location.reload();
         });
       }
 
       $(document).ready(function () {
-        $("#table-data").DataTable();
+        $("#table-data").DataTable({
+          paging: true,
+        });
         $(".btn-delete").on("click", function (e) {
           e.preventDefault();
           let id = this.dataset.id;

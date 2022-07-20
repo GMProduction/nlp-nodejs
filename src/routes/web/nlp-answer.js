@@ -1,6 +1,6 @@
 import {
     create,
-    // destroy,
+    destroy,
     detail,
     // findAll,
     index
@@ -17,5 +17,5 @@ module.exports = function (route) {
     route.get('/nlp-answer/:id/detail', detail)
     route.post('/nlp-answer/:id/detail', detail)
     // route.get('/nlp-answer/data', findAll)
-    // route.post('/nlp-answer/:id/delete', destroy)
+    route.post('/nlp-answer/:id/delete', destroy)
 }

@@ -1,4 +1,8 @@
 const Model = require('../models');
+import {
+    SuccessResponse,
+    ErrorResponse
+} from '../lib/helper';
 const {
     NLPAnswer
 } = Model;
@@ -75,6 +79,22 @@ export const findAll = async (request, response) => {
         return response.status(500).json({
             code: 500,
             data: error
+        })
+    }
+}
+
+export const destroy = async (request, response) => {
+    try {
+        let id = request.params.id;
+        await NLPAnswer.destroy({
+            where: {
+                id
+            }
+        })
+        return SuccessResponse(response)
+    } catch (error) {
+        return ErrorResponse(response, {
+            message: error
         })
     }
 }

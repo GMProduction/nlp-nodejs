@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skripsi NLP | Halaman Jawaban NLP</title>
+    <%- include('../components/head.ejs') %>
+  </head>
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <%- include('../components/sidebar.ejs') %> <% if(messages.error) { %>
+    <script>
+      var msg = "<%= messages.error %>";
+      Swal.fire("Gagal", msg, "error");
+    </script>
+    <% } %> <% if(messages.success) { %>
+    <script>
+      Swal.fire("Berhasil!", "Success Menambahkan Data", "success");
+    </script>
+    <% } %>
+    <div class="content-wrapper p-3">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <p class="font-weight-bold mb-0" style="font-size: 20px">
+          Halaman Tambah Halaman Jawaban NLP
+        </p>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/nlp-question">Halaman Pertanyaan NLP</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <form method="post" id="form-login">
+                <div class="mb-3">
+                  <label for="answer" class="form-label">Tipe Jawaban</label>
+                  <select
+                    class="form-control"
+                    aria-label="Default select example"
+                    id="answer"
+                    name="answer"
+                  >
+                    <option selected value="">--pilih tipe jawaban--</option>
+                    <% answer.forEach(function(v, k) { %>
+                    <option value="<%=v['id']%>"><%=v['type']%></option>
+                    <% } ) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="tipe" class="form-label">Pertanyaan</label>
+                  <textarea
+                    rows="3"
+                    class="form-control"
+                    id="question"
+                    name="question"
+                    placeholder="Pertanyaan"
+                  /></textarea>
+                </div>
+                <div class="text-right">
+                  <button class="btn btn-primary" id="btn-login" type="submit">
+                    <i class="fa fa-save mr-2"></i>Simpan
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../components/script.ejs') %>
+  </body>
+</html>
