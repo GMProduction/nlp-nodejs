@@ -6,12 +6,28 @@ import {
     register
 } from "../controller/auth";
 import {
-    index
+    index,
+    data
 } from "../controller/dashboard";
 
+const pdfService = require('../controller/pdf-service');
+route.get('/pdf', async (request, response) => {
+    // const stream = response.writeHead(200, {
+    //     'Content-type': 'application/pdf',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Content-Disposition': 'attachment;filename=abc.pdf'
+    // });
+
+    pdfService.buildPDF(
+        (chunk) => {},
+        () => {},
+        response
+    )
+});
 route.get('/', loginPage);
 route.post('/', loginPage);
 route.get('/dashboard', index);
+route.get('/dashboard/data', data);
 route.get('/cart', async (request, response) => {
     response.render('cart');
 });

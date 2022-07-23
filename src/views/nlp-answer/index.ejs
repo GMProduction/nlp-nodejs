@@ -79,7 +79,22 @@
       }
 
       $(document).ready(function () {
-        $("#table-data").DataTable();
+        $("#table-data").DataTable({
+          paging: true,
+          fnDrawCallback: function (oSettings) {
+            $(".btn-delete").on("click", function (e) {
+              e.preventDefault();
+              let id = this.dataset.id;
+              AlertConfirm(
+                "Apakah anda yakin menghapus?",
+                "Data yang dihapus tidak dapat dikembalikan!",
+                function () {
+                  destroy(id);
+                }
+              );
+            });
+          },
+        });
         $(".btn-delete").on("click", function (e) {
           e.preventDefault();
           let id = this.dataset.id;

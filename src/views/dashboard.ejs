@@ -12,55 +12,124 @@
     <div class="content-wrapper p-3">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <p class="font-weight-bold mb-0" style="font-size: 20px">Dashboard</p>
-        <nav aria-label="breadcrumb">
+        <!-- <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Pesanan</li>
           </ol>
-        </nav>
+        </nav> -->
       </div>
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="pills-menunggu-tab"
+            data-toggle="tab"
+            href="#pills-menunggu"
+            role="tab"
+            data-type="menunggu"
+            aria-controls="pills-menunggu"
+            aria-selected="true"
+            >Pesanan Baru</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-proses-tab"
+            data-toggle="tab"
+            href="#pills-proses"
+            role="tab"
+            data-type="proses"
+            aria-controls="pills-proses"
+            aria-selected="false"
+            >Pesanan Proses</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-selesai-tab"
+            data-toggle="tab"
+            href="#pills-selesai"
+            role="tab"
+            data-type="selesai"
+            aria-controls="pills-selesai"
+            aria-selected="false"
+            >Pesanan Selesai</a
+          >
+        </li>
+      </ul>
       <table id="table-data" class="display w-100 table table-bordered">
         <thead>
           <tr>
             <th width="5%" class="text-center">#</th>
-            <th width="15%">No. Transaksi</th>
+            <th width="20%">No. Transaksi</th>
             <th>Nama Customer</th>
             <th width="12%" class="text-center">Total</th>
             <th width="12%" class="text-center">Status</th>
             <th width="10%" class="text-center">Action</th>
           </tr>
         </thead>
-        <tbody>
-          <% data.forEach(function(v, k) { %>
-          <tr>
-            <td><%= k + 1 %></td>
-            <td><%= v['no_transaksi'] %></td>
-            <td><%= v['user']['member']['nama'] %></td>
-            <td class="text-center"><%= v['total'] %></td>
-            <td class="text-center">
-              <span class="pill-<%= v['status'] %>"><%= v['status'] %></span>
-            </td>
-            <td class="text-center">
-              <a href="/pesanan/<%=v['id']%>" class="btn btn-info">
-                <i class="bx bx-info-circle" style="color: white"></i>
-              </a>
-            </td>
-          </tr>
-          <% } ) %>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
 
     <%- include('components/script.ejs') %>
     <script>
-      async function destroy(id) {
-        AjaxPost("/member/" + id + "/delete", {}, function () {
-          window.location.reload();
-        });
-      }
+      var table;
+      var status = "menunggu";
 
+      function reload() {
+        table.ajax.reload();
+      }
       $(document).ready(function () {
-        $("#table-data").DataTable();
+        $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+          status = $(e.target).attr("data-type");
+          reload();
+        });
+
+        table = DataTableGenerator(
+          "#table-data",
+          "/dashboard/data",
+          [
+            {
+              data: null,
+              render: function (data, type, row, meta) {
+                return meta["row"] + 1;
+              },
+            },
+            { data: "no_transaksi" },
+            { data: "user.member.nama" },
+            { data: "total" },
+            { data: "status" },
+            {
+              data: null,
+              render: function (data, type, row, meta) {
+                let _stat = row["status"];
+                if (_stat === "selesai") {
+                  return (
+                    '<a href="/pdf" target="_blank" class="btn btn-success btn-print" data-id="' +
+                    data["id"] +
+                    '"><i class="fa fa-print"></i></a>'
+                  );
+                }
+                return (
+                  '<a href="/pesanan/' +
+                  data["id"] +
+                  '" class="btn btn-info btn-detail" data-id="' +
+                  data["id"] +
+                  '"><i class="fa fa-info"></i></a>'
+                );
+              },
+            },
+          ],
+          [],
+          function (d) {
+            d.status = status;
+          }
+        );
+
         $(".btn-delete").on("click", function (e) {
           e.preventDefault();
           let id = this.dataset.id;

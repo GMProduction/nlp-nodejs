@@ -59,7 +59,7 @@ export const detail = async (request, response) => {
             status: newStatus
         });
         request.flash('success', 'Success');
-        response.redirect('/pesanan');
+        response.redirect('/dashboard');
         return
     }
     response.render('pesanan/detail', {

@@ -50,10 +50,14 @@ export const create = async (request, response) => {
 
 export const detail = async (request, response) => {
     let id = request.params.id;
-    const data = await NLPAnswer.findOne({
+    const data = await NLPQuestion.findOne({
         where: {
             id,
         },
+        include: [{
+            model: NLPAnswer,
+            as: "answer",
+        }]
     });
     if (!data) {
         response.send("Halaman Tidak Di Temukan")
@@ -62,26 +66,28 @@ export const detail = async (request, response) => {
 
     if (request.method === 'POST') {
         const {
-            tipe,
-            answer
+            answer,
+            question
         } = request.body;
         await data.update({
-            type: tipe,
-            answer: answer,
+            nlp_answers_id: answer,
+            question: question,
         });
         request.flash('success', 'Success');
         response.redirect('/nlp-question');
         return
     }
+    const answer = await NLPAnswer.findAll();
     response.render('nlp-question/edit', {
-        data: data
+        data: data,
+        answer: answer
     });
 }
 
 export const destroy = async (request, response) => {
     try {
         let id = request.params.id;
-        await NLPAnswer.destroy({
+        await NLPQuestion.destroy({
             where: {
                 id
             }

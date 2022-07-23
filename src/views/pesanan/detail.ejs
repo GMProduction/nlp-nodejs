@@ -1,118 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skripsi NLP | Halaman Detail Pesanan</title>
     <%- include('../components/head.ejs') %>
-</head>
-<body>
-    <%- include('../components/navbar.ejs') %>
-    <% if(messages.success) { %>
-        <script>
-            Swal.fire("Berhasil!", 'Success Merubah Data', "success")
-        </script>
+  </head>
+  <body>
+    <%- include('../components/sidebar.ejs') %> <% if(messages.success) { %>
+    <script>
+      Swal.fire("Berhasil!", "Success Merubah Data", "success");
+    </script>
     <% } %>
-    <div class="container-fluid pt-3">
-        <div class="d-flex align-items-center justify-content-between mb-3">
-            <p class="font-weight-bold mb-0" style="font-size: 20px">Halaman Detail Pesanan</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="fw-bold">Detail Pemesan</p>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3">
-                                <span class="fw-bold">No. Transaksi</span>
-                            </div>
-                            <div class="col-lg-9 col-md-9">
-                                <span class="fw-bold">: <%= data['no_transaksi'] %></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3">
-                                <span class="fw-bold">Nama Customer</span>
-                            </div>
-                            <div class="col-lg-9 col-md-9">
-                                <span class="fw-bold">: <%= data['user']['member']['nama'] %></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-md-3">
-                                <span class="fw-bold">Status</span>
-                            </div>
-                            <div class="col-lg-9 col-md-9">
-                                <span class="fw-bold">: <%= data['status'] %></span>
-                            </div>
-                        </div>
-                    </div>
+    <div class="content-wrapper p-3">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <p class="font-weight-bold mb-0" style="font-size: 20px">
+          Halaman Detail Pesanan
+        </p>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Detail Pesanan
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <p class="font-weight-bold">Detail Pemesan</p>
+              <div class="row">
+                <div class="col-lg-4 col-md-3">
+                  <span class="fw-bold">No. Transaksi</span>
                 </div>
+                <div class="col-lg-8 col-md-9">
+                  <span class="fw-bold">: <%= data['no_transaksi'] %></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-3">
+                  <span class="fw-bold">Nama Customer</span>
+                </div>
+                <div class="col-lg-8 col-md-9">
+                  <span class="fw-bold"
+                    >: <%= data['user']['member']['nama'] %></span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-3">
+                  <span class="fw-bold">Status</span>
+                </div>
+                <div class="col-lg-8 col-md-9">
+                  <span class="fw-bold">: <%= data['status'] %></span>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-6 col-md-6"></div>
+          </div>
         </div>
-        <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <p class="fw-bold">Daftar Pesanan</p>
-            </div>
-            
-            <table id="table-data" class="display w-100 table table-bordered">
-                <thead>
-                <tr>
-                    <th width="5%" class="text-center">#</th>
-                    <th>Nama Item</th>
-                    <th width="12%">Qty</th>
-                    <th width="12%">Harga (Rp. )</th>
-                    <th width="12%">Total(Rp.)</th>
-                    <th width="10%" class="text-center">Action</th>
-                </tr>
-                </thead>
-                <% data.cart.forEach(function(v, k) { %>
-                    <tr>
-                        <td><%= k + 1 %></td>
-                        <td><%= v['item']['nama'] %></td>
-                        <td><%= v['qty'] %></td>
-                        <td><%= v['harga'] %></td>
-                        <td><%= v['total'] %></td>
-                        <td class="text-center">
-                            <a href="/pesanan/<%=v['id']%>" class="btn btn-info">
-                                <i class='bx bx-info-circle' style="color: white;"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <% } ) %>
-                <tbody>
-                </tbody>
-            </table>
+        <div class="col-lg-6 col-md-6"></div>
+      </div>
+      <div class="p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="font-weight-bold">Daftar Pesanan</p>
+        </div>
 
-            <div class="row mt-3">
-                <div class="col-lg-8 col-md-12"></div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-bold w-50">Total</span>
-                        <div class="w-50 d-flex justify-content-between">
-                            : <span class="fw-bold">Rp. <%= data['total'] %></span>
-                        </div>
-                    </div>
-                </div>
+        <table id="table-data" class="display w-100 table table-bordered">
+          <thead>
+            <tr>
+              <th width="5%" class="text-center">#</th>
+              <th>Nama Item</th>
+              <th width="12%">Qty</th>
+              <th width="12%">Harga (Rp. )</th>
+              <th width="12%">Total(Rp.)</th>
+            </tr>
+          </thead>
+          <% data.cart.forEach(function(v, k) { %>
+          <tr>
+            <td><%= k + 1 %></td>
+            <td><%= v['item']['nama'] %></td>
+            <td><%= v['qty'] %></td>
+            <td><%= v['harga'] %></td>
+            <td><%= v['total'] %></td>
+          </tr>
+          <% } ) %>
+          <tbody></tbody>
+        </table>
+
+        <div class="row mt-3">
+          <div class="col-lg-8 col-md-12"></div>
+          <div class="col-lg-4 col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="font-weight-bold w-50">Total</span>
+              <div class="w-50 d-flex justify-content-between">
+                : <span class="font-weight-bold">Rp. <%= data['total'] %></span>
+              </div>
             </div>
-            <div class="text-end mb-2 mt-3">
-                <form method="post">
-                    <input type="hidden" name="id" value="<%= data['id'] %>">
-                    <button type="submit" data-id="<%= data['id'] %>" class="btn btn-success" id="btn-save">
-                        <i class="bx bx-save me-2"></i>Submit
-                    </button>
-                </form>
-                
+            <hr />
+            <div class="text-right mb-2 mt-3 2-100">
+              <form method="post">
+                <input type="hidden" name="id" value="<%= data['id'] %>" />
+                <button
+                  type="submit"
+                  data-id="<%= data['id'] %>"
+                  class="btn btn-success w-100"
+                  id="btn-save"
+                >
+                  <i class="bx bx-save mr-2"></i>
+                  <span class="font-weight-bold">Submit</span>
+                </button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <%- include('../components/script.ejs') %>
     <script>
-        $(document).ready(function() {
-            $('#table-data').DataTable();
-        })
+      $(document).ready(function () {
+        $("#table-data").DataTable();
+      });
     </script>
-</body>
+  </body>
 </html>
