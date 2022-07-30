@@ -46,7 +46,7 @@ require('./api/cart')(route)
 require('./api/transaction')(route)
 // require('./nlp-answer')(route)
 // require('./nlp-question')(route)
-// require('./nlp')(route)
+require('./nlp')(route)
 
 // route.post('/api/login', login);
 // route.post('/api/register', register);

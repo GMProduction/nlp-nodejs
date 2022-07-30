@@ -5,5 +5,5 @@ import {
 
 module.exports = function (route) {
     route.get('/nlp', viewPage)
-    route.post('/nlp/execute', executeNLP)
+    route.post('/api/nlp/execute', executeNLP)
 }

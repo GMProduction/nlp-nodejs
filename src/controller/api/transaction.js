@@ -21,10 +21,13 @@ export const findAll = async (request, response) => {
         const {
             id
         } = request.user;
+        const {
+            status
+        } = request.query;
         const data = await Transaction.findAll({
             where: {
                 user_id: id,
-
+                status: status
             },
             include: [{
                 model: Cart,

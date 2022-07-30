@@ -62,3 +62,24 @@ export const findById = async (request, response) => {
         })
     }
 }
+export const findByCategoryId = async (request, response) => {
+    try {
+        let id = request.params.id;
+        const data = await Item.findAll({
+            where: {
+                category_id: id
+            },
+            include: [{
+                model: Category,
+                as: "category"
+            }]
+        });
+        return SuccessResponse(response, {
+            payload: data
+        });
+    } catch (error) {
+        return ErrorResponse(response, {
+            message: error
+        })
+    }
+}
