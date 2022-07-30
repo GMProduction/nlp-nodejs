@@ -2,7 +2,7 @@ import {
     SuccessResponse,
     ErrorResponse
 } from '../lib/helper';
-const hash = require("bcrypt");
+const hash = require("bcryptjs");
 
 const Model = require('../models');
 const {

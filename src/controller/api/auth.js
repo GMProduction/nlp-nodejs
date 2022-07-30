@@ -1,4 +1,4 @@
-const hash = require("bcrypt");
+const hash = require("bcryptjs");
 const Model = require('../../models');
 const JWT = require("jsonwebtoken");
 const {
