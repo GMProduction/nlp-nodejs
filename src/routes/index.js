@@ -24,6 +24,9 @@ route.get('/pdf', async (request, response) => {
         response
     )
 });
+route.get('/logout', async (request, response) => {
+    response.redirect('/');
+});
 route.get('/', loginPage);
 route.post('/', loginPage);
 route.get('/dashboard', index);

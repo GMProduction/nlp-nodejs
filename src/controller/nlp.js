@@ -44,6 +44,7 @@ export const executeNLP = async (request, response) => {
         await manager.train();
         manager.save();
         const result = await manager.process('id', quest);
+        console.log(result);
         return response.status(200).json({
             code: 200,
             data: result
