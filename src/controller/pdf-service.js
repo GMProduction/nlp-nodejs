@@ -111,6 +111,54 @@ async function buildPDF(dataCallback, endCallback, res) {
     doc.end();
 }
 
+async function buildReportPenjualan(res) {
+    const doc = new PDFDocument({
+        size: 'A4',
+        layout: 'landscape'
+    });
+    const table = {
+        headers: [{
+                label: "#",
+                property: 'no',
+                width: 60,
+                renderer: null
+            },
+            {
+                label: "No. Transaksi",
+                property: 'no_transaction',
+                width: 150,
+                renderer: null
+            },
+            {
+                label: "Customer",
+                property: 'customer',
+                width: 100,
+                renderer: null
+            },
+            {
+                label: "Total",
+                property: 'total',
+                width: 100,
+                renderer: null
+            },
+        ],
+        datas: [],
+        rows: [],
+    };
+
+    doc.text(`Nota Penjualan Sang Ndoro Coffee`, {
+        align: 'center'
+    }).moveDown(1);
+    await doc.table(table, {
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+        prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+            doc.font("Helvetica").fontSize(8);
+        },
+    });
+    doc.pipe(res);
+    doc.end();
+}
 module.exports = {
-    buildPDF
+    buildPDF,
+    buildReportPenjualan
 };

@@ -38,6 +38,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
     "mysql2": "^2.2.5",
     "node-blob": "0.0.2",
     "node-nlp": "^4.24.0",

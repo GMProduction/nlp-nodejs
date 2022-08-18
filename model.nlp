@@ -36,7 +36,7 @@
           "useStemDict": true
         },
         "stemDict": {
-          "apa,buka,jam": {
+          "apa,buka,jam,yang": {
             "intent": "operational.hour",
             "domain": "default"
           },
@@ -44,20 +44,12 @@
             "intent": "operational.hour",
             "domain": "default"
           },
-          "baik,espresso,komposisi": {
+          "baik,espresso,komposisi,yang": {
             "intent": "espresso.composition",
             "domain": "default"
           },
           "espresso,rasio,sedia,yang": {
             "intent": "espresso.ratio",
-            "domain": "default"
-          },
-          "apa,buka,jam,yang": {
-            "intent": "operational.hour",
-            "domain": "default"
-          },
-          "baik,espresso,komposisi,yang": {
-            "intent": "espresso.composition",
             "domain": "default"
           }
         },
@@ -67,126 +59,6 @@
           "espresso.ratio": "default"
         },
         "sentences": [
-          {
-            "domain": "default",
-            "utterance": "buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi terbaik espresso",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
-          {
-            "domain": "default",
-            "utterance": "buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi terbaik espresso",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
-          {
-            "domain": "default",
-            "utterance": "buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi terbaik espresso?",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
-          {
-            "domain": "default",
-            "utterance": "buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi terbaik espresso ?",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
-          {
-            "domain": "default",
-            "utterance": "buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi terbaik espresso ?",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
-          {
-            "domain": "default",
-            "utterance": "yang buka jam berapa",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "dari jam berapa buka",
-            "intent": "operational.hour"
-          },
-          {
-            "domain": "default",
-            "utterance": "komposisi yang terbaik espresso ?",
-            "intent": "espresso.composition"
-          },
-          {
-            "domain": "default",
-            "utterance": "rasio espresso yang disediakan",
-            "intent": "espresso.ratio"
-          },
           {
             "domain": "default",
             "utterance": "yang buka jam berapa",
@@ -222,6 +94,7 @@
               "log": true
             },
             "features": {
+              "yang": 1,
               "buka": 1,
               "jam": 1,
               "apa": 1,
@@ -230,7 +103,6 @@
               "baik": 1,
               "espresso": 1,
               "rasio": 1,
-              "yang": 1,
               "sedia": 1
             },
             "intents": {
@@ -240,26 +112,31 @@
             },
             "intentFeatures": {
               "operational.hour": {
+                "yang": 1,
                 "buka": 1,
                 "jam": 1,
                 "apa": 1,
-                "dari": 1,
-                "yang": 1
+                "dari": 1
               },
               "espresso.composition": {
                 "komposisi": 1,
+                "yang": 1,
                 "baik": 1,
-                "espresso": 1,
-                "yang": 1
+                "espresso": 1
               },
               "espresso.ratio": {
+                "yang": 1,
                 "rasio": 1,
                 "espresso": 1,
-                "yang": 1,
                 "sedia": 1
               }
             },
             "featuresToIntent": {
+              "yang": [
+                "operational.hour",
+                "espresso.composition",
+                "espresso.ratio"
+              ],
               "buka": [
                 "operational.hour"
               ],
@@ -271,11 +148,6 @@
               ],
               "dari": [
                 "operational.hour"
-              ],
-              "yang": [
-                "operational.hour",
-                "espresso.composition",
-                "espresso.ratio"
               ],
               "komposisi": [
                 "espresso.composition"
@@ -307,6 +179,7 @@
                 "log": true
               },
               "features": [
+                "yang",
                 "buka",
                 "jam",
                 "apa",
@@ -315,7 +188,6 @@
                 "baik",
                 "espresso",
                 "rasio",
-                "yang",
                 "sedia"
               ],
               "intents": [
@@ -325,43 +197,43 @@
               ],
               "perceptrons": [
                 [
-                  4.155990123748779,
-                  4.155990123748779,
-                  4.155990123748779,
-                  0.23548944294452667,
-                  -0.43752434849739075,
-                  -0.43752434849739075,
-                  -0.8827465772628784,
-                  -0.4443930983543396,
-                  0.1321774274110794,
-                  -0.4443930983543396,
-                  1.6343398865656622
+                  1.137042760848999,
+                  3.8680686950683594,
+                  3.8680686950683594,
+                  3.8680686950683594,
+                  1.5237122774124146,
+                  -0.6098449230194092,
+                  -0.6098449230194092,
+                  -1.2176923751831055,
+                  -0.6043323874473572,
+                  -0.6043323874473572,
+                  1.3209691041354252
                 ],
                 [
-                  -0.4555036127567291,
-                  -0.4555036127567291,
-                  -0.4555036127567291,
-                  -0.17312858998775482,
-                  5.033147811889648,
-                  5.033147811889648,
-                  3.1012964248657227,
-                  -1.943490982055664,
-                  -0.4608117938041687,
-                  -1.943490982055664,
-                  1.3251261004127424
+                  1.6013351678848267,
+                  -0.7985996007919312,
+                  -0.7985996007919312,
+                  -0.7985996007919312,
+                  -0.021316004917025566,
+                  4.742342948913574,
+                  4.742342948913574,
+                  2.3767740726470947,
+                  -2.367655038833618,
+                  -2.367655038833618,
+                  0.7853582495583417
                 ],
                 [
-                  -1.003400206565857,
-                  -1.003400206565857,
-                  -1.003400206565857,
-                  -0.0934237614274025,
-                  -2.4795329570770264,
-                  -2.4795329570770264,
-                  2.1798195838928223,
-                  4.661446571350098,
-                  2.2138800621032715,
-                  4.661446571350098,
-                  0.5664209771057741
+                  1.5958865880966187,
+                  -0.8239731788635254,
+                  -0.8239731788635254,
+                  -0.8239731788635254,
+                  -0.034032631665468216,
+                  -2.3559141159057617,
+                  -2.3559141159057617,
+                  2.3881542682647705,
+                  4.746647834777832,
+                  4.746647834777832,
+                  0.7735550725580006
                 ]
               ]
             }
@@ -420,102 +292,6 @@
     },
     "intentDomains": {},
     "extraSentences": [
-      [
-        "id",
-        "buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi terbaik espresso"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
-      [
-        "id",
-        "buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi terbaik espresso"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
-      [
-        "id",
-        "buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi terbaik espresso?"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
-      [
-        "id",
-        "buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi terbaik espresso ?"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
-      [
-        "id",
-        "buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi terbaik espresso ?"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
-      [
-        "id",
-        "yang buka jam berapa"
-      ],
-      [
-        "id",
-        "dari jam berapa buka"
-      ],
-      [
-        "id",
-        "komposisi yang terbaik espresso ?"
-      ],
-      [
-        "id",
-        "rasio espresso yang disediakan"
-      ],
       [
         "id",
         "yang buka jam berapa"
