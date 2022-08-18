@@ -54,7 +54,10 @@ export const penjualan_data = async (request, response) => {
 }
 
 export const penjualan_cetak = async (request, response) => {
+    const {
+        tgl1, tgl2
+    } = request.query;
     pdfService.buildReportPenjualan(
-        response
+        tgl1, tgl2, response
     )
 }

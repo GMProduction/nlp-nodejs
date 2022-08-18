@@ -1,4 +1,15 @@
 const PDFDocument = require('pdfkit-table');
+const Model = require('../models');
+const moment = require('moment');
+const {
+    Transaction,
+    Cart,
+    User,
+    Member
+} = Model;
+const {
+    Op
+} = require("sequelize");
 
 async function buildPDF(dataCallback, endCallback, res) {
     const doc = new PDFDocument({
@@ -111,16 +122,17 @@ async function buildPDF(dataCallback, endCallback, res) {
     doc.end();
 }
 
-async function buildReportPenjualan(res) {
+async function buildReportPenjualan(tgl1, tgl2, res) {
     const doc = new PDFDocument({
         size: 'A4',
         layout: 'landscape'
     });
+    let dataPenjualan = await getPenjualan(tgl1, tgl2);
     const table = {
         headers: [{
                 label: "#",
                 property: 'no',
-                width: 60,
+                width: 50,
                 renderer: null
             },
             {
@@ -132,31 +144,85 @@ async function buildReportPenjualan(res) {
             {
                 label: "Customer",
                 property: 'customer',
-                width: 100,
+                width: 420,
                 renderer: null
             },
             {
                 label: "Total",
                 property: 'total',
-                width: 100,
+                width: 80,
                 renderer: null
             },
         ],
-        datas: [],
-        rows: [],
+        datas: dataPenjualan.results,
     };
 
-    doc.text(`Nota Penjualan Sang Ndoro Coffee`, {
+    doc.font("Helvetica-Bold").fontSize(16).text(`LAPORAN PENJUALAN SANG NDORO COFFEE`, {
+        align: 'center'
+    });
+    doc.font("Helvetica").fontSize(14).text(`Periode Laporan ${tgl1} - ${tgl2}`, {
         align: 'center'
     }).moveDown(1);
     await doc.table(table, {
-        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+        width: 500,
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(14),
         prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
-            doc.font("Helvetica").fontSize(8);
+            doc.font("Helvetica").fontSize(12);
         },
     });
+    doc.font("Helvetica").fontSize(14).text(`Total Penjualan : Rp ${dataPenjualan.total}`, {
+        align: 'right',
+    }).moveDown(1);
+    doc.font("Helvetica").fontSize(14).text(`Surakarta, 19-08-2022`, (620), doc.y, {
+        align: 'center',
+        width: 150
+    }).moveDown(2);
+    doc.font("Helvetica").fontSize(14).text(`(Admin)`, (620), doc.y, {
+        align: 'center',
+        width: 150
+    }).moveDown(2);
+    
     doc.pipe(res);
     doc.end();
+}
+
+async function getPenjualan(tgl1, tgl2) {
+    const data = await Transaction.findAll({
+        where: {
+            created_at: {
+                [Op.between]: [tgl1, tgl2+' 23:59:59']
+            }
+        },
+        include: [{
+            model: Cart,
+            as: 'cart'
+        }, {
+            model: User,
+            as: 'user',
+            include: [{
+                model: Member,
+                as: 'member'
+            }]
+        }]
+    });
+    let results = [];
+    let total = 0;
+    data.forEach(function (v,k){
+        let tmp = {
+            no: (k+1),
+            no_transaction: v.no_transaksi,
+            customer: v.user.member.nama,
+            total: v.total
+        }
+        results.push(tmp);
+        total += v.total;
+    })
+    console.log(results);
+    return {
+        results: results,
+        total: total
+    };
+    
 }
 module.exports = {
     buildPDF,
