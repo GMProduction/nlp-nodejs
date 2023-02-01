@@ -5,7 +5,9 @@ const {
     Transaction,
     Cart,
     User,
-    Member
+    Member,
+    Category,
+    Item
 } = Model;
 const {
     Op
@@ -156,7 +158,9 @@ async function buildReportPenjualan(tgl1, tgl2, res) {
         ],
         datas: dataPenjualan.results,
     };
-
+    
+    const now = new Date();
+    const formatted_date = `${now.getDay()}-${now.getMonth()}-${now.getFullYear()}`;
     doc.font("Helvetica-Bold").fontSize(16).text(`LAPORAN PENJUALAN SANG NDORO COFFEE`, {
         align: 'center'
     });
@@ -173,7 +177,7 @@ async function buildReportPenjualan(tgl1, tgl2, res) {
     doc.font("Helvetica").fontSize(14).text(`Total Penjualan : Rp ${dataPenjualan.total}`, {
         align: 'right',
     }).moveDown(1);
-    doc.font("Helvetica").fontSize(14).text(`Surakarta, 19-08-2022`, (620), doc.y, {
+    doc.font("Helvetica").fontSize(14).text(`Surakarta, ${formatted_date}`, (620), doc.y, {
         align: 'center',
         width: 150
     }).moveDown(2);
@@ -191,7 +195,8 @@ async function getPenjualan(tgl1, tgl2) {
         where: {
             created_at: {
                 [Op.between]: [tgl1, tgl2+' 23:59:59']
-            }
+            },
+            status: 'selesai'
         },
         include: [{
             model: Cart,
@@ -224,7 +229,121 @@ async function getPenjualan(tgl1, tgl2) {
     };
     
 }
+
+async function buildReportItem(tgl1, tgl2, res) {
+    const doc = new PDFDocument({
+        size: 'A4',
+        layout: 'landscape'
+    });
+    let dataBarangTerjual = await getItemTerjual(tgl1, tgl2);
+    const table = {
+        headers: [{
+                label: "#",
+                property: 'no',
+                width: 50,
+                renderer: null
+            },
+            {
+                label: "Tanggal",
+                property: 'tanggal',
+                width: 120,
+                renderer: null
+            },
+            {
+                label: "Kategori",
+                property: 'kategori',
+                width: 150,
+                renderer: null
+            },
+            {
+                label: "Nama Item",
+                property: 'item',
+                width: 300,
+                renderer: null
+            },
+            {
+                label: "Qty",
+                property: 'qty',
+                width: 80,
+                renderer: null
+            },
+        ],
+        datas: dataBarangTerjual.results,
+    };
+    
+    const now = new Date();
+    const formatted_date = `${now.getDay()}-${now.getMonth()}-${now.getFullYear()}`;
+    doc.font("Helvetica-Bold").fontSize(16).text(`LAPORAN ITEM TERJUAL SANG NDORO COFFEE`, {
+        align: 'center'
+    });
+    doc.font("Helvetica").fontSize(14).text(`Periode Laporan ${tgl1} - ${tgl2}`, {
+        align: 'center'
+    }).moveDown(1);
+    await doc.table(table, {
+        width: 500,
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(14),
+        prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+            doc.font("Helvetica").fontSize(12);
+        },
+    });
+    
+    doc.font("Helvetica").fontSize(14).text(`Surakarta, ${formatted_date}`, (620), doc.y, {
+        align: 'center',
+        width: 150
+    }).moveDown(2);
+    doc.font("Helvetica").fontSize(14).text(`(Admin)`, (620), doc.y, {
+        align: 'center',
+        width: 150
+    }).moveDown(2);
+    
+    doc.pipe(res);
+    doc.end();
+}
+
+async function getItemTerjual(tgl1, tgl2) {
+    
+    const data = await Cart.findAll({
+        where: {
+        },
+        include: [{
+            model: Transaction,
+            as: 'transaction',
+            where: {
+                created_at: {
+                    [Op.between]: [tgl1, tgl2+' 23:59:59']
+                },
+                status: 'selesai'
+            }
+        }, {
+            model: Item,
+            as: 'item',
+            include: [{
+                model: Category,
+                as: 'category'
+            }]
+        }]
+    });
+    console.log(data);
+    let results = [];
+    data.forEach(function (v,k){
+        const date = new Date(v["transaction"]["createdAt"]);
+        const formatted_date = `${date.getDay().toString().padStart(2, '0')}-${date.getMonth().toString().padStart(2, '0')}-${date.getFullYear()}`;
+        let tmp = {
+            no: (k+1),
+            tanggal: formatted_date,
+            kategori: v.item.category.nama,
+            item: v.item.nama,
+            qty: v.qty
+        }
+        results.push(tmp);
+    })
+    return {
+        results: results,
+    };
+    
+}
 module.exports = {
     buildPDF,
-    buildReportPenjualan
+    buildReportPenjualan,
+    buildReportItem
 };
