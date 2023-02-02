@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 const fileUpload = require('express-fileupload');
 var flash = require('express-flash');
-const PORT = 8002;
+const PORT = 3000;
 const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
@@ -37,7 +37,5 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 app.use(route);
-app.listen(PORT, () => {
-    console.log(`Application Running At http://localhost:${PORT}`);
-});
+app.listen(PORT);
 // app.listen(PORT, "192.168.137.1");
