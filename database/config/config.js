@@ -2,7 +2,7 @@ require('dotenv').config();
 module.exports = {
   "development": {
     "username": "user",
-    "password": password,
+    "password": "password",
     "database": "db_nlp",
     "host": "localhost",
     "dialect": "mysql",
