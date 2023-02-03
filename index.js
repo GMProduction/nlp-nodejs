@@ -37,5 +37,7 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
 
 app.use(route);
+require('dotenv').config();
+console.log(process.env.DB_HOST);
 app.listen(PORT);
 // app.listen(PORT, "check");
